@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Log;
+use Maatwebsite\Excel\Excel;
 
 class DataUserController extends Controller
 {
     public function datauser(Request $request)
     {
         $role = Auth::user()->role;
-        $data = User::all();
+        $data = User::paginate(5);
         return view('datauser.datauser', compact('data'), [
             'role' => $role
         ]);
@@ -90,6 +92,11 @@ class DataUserController extends Controller
             return redirect()->back()->with('fail', 'Data gagal dihapus');
         }
     }
+
+    public function exportUser(Excel $excel)
+{
+    return $excel->download(new ExportUser, 'data_user.xlsx');
+}
 }
 
 

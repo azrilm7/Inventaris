@@ -18,6 +18,10 @@
                 </ol>
             </nav>
         </div>
+        
+        <div class="col-md-6 col-sm-12 text-right mb-2">
+            <a href="{{route('export-user')}}" class="btn btn-primary"><i class="bi bi-download"></i> Download data user</a>
+        </div>
     </div>
 </div>
 <div class="wrapper">
@@ -104,6 +108,10 @@
                     
                             </tbody>
                         </table>
+                        
+                        <div class="d-flex justify-content-center">
+                            {{ $data->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>

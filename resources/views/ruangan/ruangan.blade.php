@@ -18,8 +18,9 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-            <a href="{{route('tambah-ruangan')}}" class="btn btn-primary">Tambah data ruangan</a>
+        <div class="col-md-6 col-sm-12 text-right mb-2">
+            <a href="{{route('export-ruangan')}}" class="btn btn-primary"><i class="bi bi-download"></i> Download data ruang</a>
+            <a href="{{route('tambah-ruangan')}}" class="btn btn-primary mr-2">Tambah data ruang</a>
         </div>
     </div>
 </div>
@@ -83,6 +84,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        
+                        <div class="d-flex justify-content-center">
+                            {{ $data->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>

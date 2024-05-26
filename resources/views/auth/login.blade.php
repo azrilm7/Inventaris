@@ -47,7 +47,7 @@
                                     <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                                 </label>
                             </div>
-                            <a href="{{route('register')}}">Register</a>
+                            <a href="{{route('register')}} " class="button btn btn-primary text-decoration-none">Register</a>
                             <button type="submit" class="button text-decoration-none text-center rounded py-2" value="Login">Login</a>
                         </div>
                     </div>

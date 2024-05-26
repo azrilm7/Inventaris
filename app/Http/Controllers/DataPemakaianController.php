@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\DataBarang;
 use App\Models\Ruangan;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\ExportPemakaian;
+use Maatwebsite\Excel\Excel;
 
 class DataPemakaianController extends Controller
 {
     public function datapemakaian(Request $request)
     {
         $role = Auth::user()->role;
-        $data = DataPemakaian::all();
+        $data = DataPemakaian::paginate(5);
         return view('datapemakaian/datapemakaian', compact('data'), [
             'role' => $role
         ]);
@@ -175,5 +177,10 @@ class DataPemakaianController extends Controller
             return response()->json(['nama_barang' => '']);
         }
     }
+
+    public function exportPemakaian(Excel $excel)
+{
+    return $excel->download(new ExportPemakaian, 'data_pemakaian.xlsx');
+}
 }
 

@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Excel;
+use App\Exports\ExportRuang;
 
 class RuanganController extends Controller
 {
     public function ruangan(Request $request)
     {
         $role = Auth::user()->role;
-        $data = Ruangan::all();
+        $data = Ruangan::paginate(5);
         return view('ruangan/ruangan', compact('data'), [
             'role' => $role,
         ]);
@@ -87,4 +89,8 @@ class RuanganController extends Controller
         return redirect()->route('ruangan')->with('success-delete', 'Data berhasil dihapus');
     }
 
+    public function exportRuangan(Excel $excel)
+{
+    return $excel->download(new ExportRuang, 'data_ruangan.xlsx');
+}
 }

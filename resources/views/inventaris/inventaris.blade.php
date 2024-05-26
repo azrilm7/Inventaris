@@ -19,8 +19,8 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-            {{-- <a href="" class="btn btn-primary"></a> --}}
+        <div class="col-md-6 col-sm-12 text-right mb-2">
+            <a href="{{route('export-inventaris')}}" class="btn btn-primary"><i class="bi bi-download"></i> Download data inventaris</a>
         </div>
     </div>
 </div>
@@ -97,6 +97,9 @@
                                 @endfor
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center">
+                            {{ $dataPembelian->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>

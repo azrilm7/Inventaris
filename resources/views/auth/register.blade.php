@@ -79,14 +79,9 @@
                                 </select>
                                 <x-input-error :messages="$errors->get('role')" class="text-danger list-group-item list-none"/>
                             </div>
-                            
-                            <div class="block mt-4">
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                                    {{ __('Already registered?') }}
-                                </a>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary mt-4">
+                        
+                                <a href="{{route('login')}} " class="button btn btn-primary text-decoration-none">Login page</a>
+                            <button type="submit" class="button text-decoration-none text-center rounded py-2">
                                 {{ __('Register') }}
                             </button>
                         </div>

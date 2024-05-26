@@ -6,13 +6,15 @@ use App\Models\DataPembelian;
 use Illuminate\Http\Request;
 use App\Models\DataBarang;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Excel;
+use App\Exports\ExportPembelian;
 
 class DataPembelianController extends Controller
 {
     public function datapembelian(Request $request)
     {
         $role = Auth::user()->role;
-        $data = DataPembelian::all();
+        $data = DataPembelian::paginate(5);
         return view('datapembelian/datapembelian',compact('data'),[
             'role' => $role
         ]);
@@ -218,4 +220,9 @@ class DataPembelianController extends Controller
 
         return redirect()->route('datapembelian')->with('success-delete', 'Data Pembelian dan barang terkait berhasil dihapus');
     }
+
+    public function exportPembelian(Excel $excel)
+{
+    return $excel->download(new ExportPembelian, 'data_pembelian.xlsx');
+}
 }

@@ -6,13 +6,15 @@ use App\Models\DataBarang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use simpanBarang;
+use App\Exports\ExportBarang;
+use Maatwebsite\Excel\Excel;
 
 class DataBarangController extends Controller
 {
     public function databarang(Request $request)
     {
         $role = Auth::user()->role;
-        $data = DataBarang::all();
+        $data = DataBarang::paginate(5);
         return view('databarang/databarang', compact('data'), [
             'role' => $role,
         ]);
@@ -126,5 +128,9 @@ class DataBarangController extends Controller
         }
     }
 
+    public function exportBarang(Excel $excel)
+{
+    return $excel->download(new ExportBarang, 'barang.xlsx');
+}
 
 }

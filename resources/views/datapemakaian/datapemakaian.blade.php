@@ -2,8 +2,8 @@
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'page title here')
 @section('content')
 <div class="page-header">
-    <div class="row">
-        <div class="col-md-6 col-sm-12">
+    <div class="row align-items-center">
+        <div class="col-md-6 col-sm-12 mb-2">
             <div class="title">
                 <h3>Data Pemakaian</h3>
             </div>
@@ -18,8 +18,9 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-            <a href="{{route('tambah-pemakaian')}}" class="btn btn-primary">Tambah data pemakaian</a>
+        <div class="col-md-6 col-sm-12 text-right mb-2">
+            <a href="{{route('export-pemakaian')}}" class="btn btn-primary"><i class="bi bi-download"></i> Download data pemakaian</a>
+            <a href="{{route('tambah-pemakaian')}}" class="btn btn-primary mr-2">Tambah data pemakaian</a>
         </div>
     </div>
 </div>
@@ -45,63 +46,28 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">
-                                        No
-                                    </th>
-                                    <th scope="col">
-                                        Kode Barang
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Nama barang
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Jumlah Pakai
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Tanggal Pakai
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Pemakaian
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Ruang
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Keterangan
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Aksi
-                                    </th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Kode Barang</th>
+                                    <th scope="col">Nama barang</th>
+                                    <th scope="col">Jumlah Pakai</th>
+                                    <th scope="col">Tanggal Pakai</th>
+                                    <th scope="col">Pemakaian</th>
+                                    <th scope="col">Ruang</th>
+                                    <th scope="col">Keterangan</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
-
                             <tbody>
                                 @foreach($data as $d)
                                 <tr>
-                                    <th scope="row">
-                                        {{$loop->iteration}}
-                                    </th>
-                                    <td>
-                                        {{$d->kode_barang}}
-                                    </td>
-                                    <td>
-                                        {{$d->nama_barang}}
-                                    </td>
-                                    <td>
-                                        {{$d->jumlah_pakai}}
-                                    </td>
-                                    <td>
-                                        {{$d->tanggal_pakai}}
-                                    </td>
-                                    <td>
-                                        {{$d->pemakaian}}
-                                    </td>
-                                    <td>
-                                        {{$d->ruangan}}
-                                    </td>
-                                    <td>
-                                        {{$d->keterangan}}
-                                    </td>
+                                    <th scope="row">{{$loop->iteration}}</th>
+                                    <td>{{$d->kode_barang}}</td>
+                                    <td>{{$d->nama_barang}}</td>
+                                    <td>{{$d->jumlah_pakai}}</td>
+                                    <td>{{$d->tanggal_pakai}}</td>
+                                    <td>{{$d->pemakaian}}</td>
+                                    <td>{{$d->ruangan}}</td>
+                                    <td>{{$d->keterangan}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -110,7 +76,7 @@
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                 <a class="dropdown-item" href="{{route('edit-pemakaian',['id' => $d->id])}}"><i class="dw dw-edit2"></i> Edit</a>
                                                 <button class="dropdown-item btn-delete" data-id="{{ $d->id }}" style="border:none;background:none;">
-                                                    <i class="dw dw-delete-3">Delete</i>
+                                                    <i class="dw dw-delete-3"></i> Delete
                                                 </button>
                                             </div>
                                         </div>
@@ -119,6 +85,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        
+                        <div class="d-flex justify-content-center">
+                            {{ $data->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
                 </div>
             </div>

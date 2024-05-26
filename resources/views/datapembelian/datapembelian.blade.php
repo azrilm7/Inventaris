@@ -18,8 +18,9 @@
                 </ol>
             </nav>
         </div>
-        <div class="col-md-6 col-sm-12 text-right">
-            <a href="{{route('tambah-pembelian')}}" class="btn btn-primary">Tambah data pembelian</a>
+        <div class="col-md-6 col-sm-12 text-right mb-2">
+            <a href="{{route('export-pembelian')}}" class="btn btn-primary"><i class="bi bi-download"></i> Download data pembelian</a>
+            <a href="{{route('tambah-pembelian')}}" class="btn btn-primary mr-2">Tambah data pembelian</a>
         </div>
     </div>
 </div>
@@ -44,88 +45,52 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">
-                                        No
-                                    </th>
-                                    <th scope="col">
-                                        Kode Barang
-                                    </th>
-                                    <th scope="col">
-                                        Nama Barang
-                                    </th>
-                                    <th scope="col">
-                                        Jenis barang
-                                    </th>
-                                    <th scope="col">
-                                        Merk/Type
-                                    </th>
-                                    <th scope="col">
-                                        Jumlah
-                                    </th>
-                                    <th scope="col">
-                                        Harga
-                                    </th>
-                                    <th scope="col">
-                                        Total
-                                    </th>
-                                    <th scope="col">
-                                        Tanggal pembelian
-                                    </th>
-                                    <th scope="col">
-                                        Aksi
-                                    </th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Kode Barang</th>
+                                    <th scope="col">Nama Barang</th>
+                                    <th scope="col">Jenis barang</th>
+                                    <th scope="col">Merk/Type</th>
+                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Harga</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Tanggal pembelian</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
-
                             <tbody>
                                 @foreach($data as $d)
                                 <tr>
-                                    <th>
-                                        {{$loop->iteration}}
-                                    </th>
-                                    <td>
-                                        {{$d->kode_barang}}
-                                    </td>
-                                    <td>
-                                        {{$d->nama_barang}}
-                                    </td>
-                                    <td>
-                                        {{$d->jenis_barang}}
-                                    </td>
-                                    <td>
-                                        {{$d->merk}}
-                                    </td>
-                                    <td>
-                                        {{$d->jumlah}}
-                                    </td>
-                                    <td>
-                                        {{$d->harga}}
-                                    </td>
-                                    <td>
-                                        {{$d->total}}
-                                    </td>
-                                    <td>
-                                        {{$d->tanggal_pembelian}}
-                                    </td>
+                                    <th>{{ $loop->iteration }}</th>
+                                    <td>{{ $d->kode_barang }}</td>
+                                    <td>{{ $d->nama_barang }}</td>
+                                    <td>{{ $d->jenis_barang }}</td>
+                                    <td>{{ $d->merk }}</td>
+                                    <td>{{ $d->jumlah }}</td>
+                                    <td>{{ $d->harga }}</td>
+                                    <td>{{ $d->total }}</td>
+                                    <td>{{ $d->tanggal_pembelian }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                                 <i class="dw dw-more"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                <a class="dropdown-item" href="{{route('edit-pembelian',['id' => $d->id])}}"><i class="dw dw-edit2"></i> Edit</a>
+                                                <a class="dropdown-item" href="{{ route('edit-pembelian', ['id' => $d->id]) }}"><i class="dw dw-edit2"></i> Edit</a>
                                                 <button class="dropdown-item btn-delete" data-id="{{ $d->id }}" style="border:none;background:none;">
-                                                    <i class="dw dw-delete-3">Delete</i>
+                                                    <i class="dw dw-delete-3"></i> Delete
                                                 </button>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                                 @endforeach
-                     
                             </tbody>
                         </table>
-                    </div>
+                        <!-- Add Pagination Links -->
+                        <div class="d-flex justify-content-center">
+                            {{ $data->links('pagination::bootstrap-4') }}
+                        </div>
+                       </div>
                 </div>
             </div>
         </main>
