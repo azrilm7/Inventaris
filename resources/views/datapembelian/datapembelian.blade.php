@@ -108,13 +108,16 @@
                                         {{$d->tanggal_pembelian}}
                                     </td>
                                     <td>
-                                        <div class="table-actions">
-                                            <a href="{{route('edit-pembelian',['id' => $d->id])}}" class="text-primary">
-                                                <i class="dw dw-edit2"></i>
+                                        <div class="dropdown">
+                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="dw dw-more"></i>
                                             </a>
-                                            <button class="btn-delete text-danger" data-id="{{ $d->id }}" style="border:none;background:none;">
-                                                <i class="dw dw-delete-3"></i>
-                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                <a class="dropdown-item" href="{{route('edit-pembelian',['id' => $d->id])}}"><i class="dw dw-edit2"></i> Edit</a>
+                                                <button class="dropdown-item btn-delete" data-id="{{ $d->id }}" style="border:none;background:none;">
+                                                    <i class="dw dw-delete-3">Delete</i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
